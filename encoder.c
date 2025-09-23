@@ -8,7 +8,6 @@
 #include "argparse.h"
 #include "common.h"
 #include "ezpng.h"
-#include "magic_number.h"
 
 // clang-format off
 static const char* const usage[] =

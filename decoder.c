@@ -8,7 +8,6 @@
 #include "argparse.h"
 #include "common.h"
 #include "ezpng.h"
-#include "magic_number.h"
 
 void print_error(const char* msg)
 {
