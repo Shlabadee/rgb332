@@ -137,11 +137,14 @@ bool apply_dither(RGBF* working_image, RGBF* quant_error, float weight, int widt
 
 int main(int argc, const char** argv)
 {
-	printf("rgb332enc v1.0.0 - Shlabadee\n");
+	printf("rgb332enc v1.0.1 - Shlabadee\n");
 	const char* input_file_path = NULL;
 	const char* output_file_path = NULL;
+	int dither_input = 0;
 	bool dither = false;
+	int serpentine_input = 0;
 	bool serpentine = false;
+	int legal_input = 0;
 	bool legal = false;
 
 	RGBF* working_image;
@@ -154,9 +157,9 @@ int main(int argc, const char** argv)
 		OPT_HELP(),
 		OPT_STRING('i', "input", &input_file_path, "input file"),
 		OPT_STRING('o', "output", &output_file_path, "output file"),
-		OPT_BOOLEAN('d', "dither", &dither, "enable dithering"),
-		OPT_BOOLEAN('s', "serpentine", &serpentine, "enable serpentine dithering"),
-		OPT_BOOLEAN('l', "legal", &legal, "show legal information and exit"),
+		OPT_BOOLEAN('d', "dither", &dither_input, "enable dithering"),
+		OPT_BOOLEAN('s', "serpentine", &serpentine_input, "enable serpentine dithering"),
+		OPT_BOOLEAN('l', "legal", &legal_input, "show legal information and exit"),
 		OPT_END()
 	};
 	// clang-format on
@@ -170,6 +173,10 @@ int main(int argc, const char** argv)
 		argparse_usage(&argparse_instance);
 		return 0;
 	}
+
+	dither = dither_input == 1;
+	serpentine = serpentine_input == 1;
+	legal = legal_input == 1;
 
 	if (legal)
 	{
