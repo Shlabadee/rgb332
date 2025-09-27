@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(RGB332)
 
-set(CMAKE_C_FLAGS_DEBUG "-g3")
+set(CMAKE_C_FLAGS_DEBUG "-fsanitize=address,undefined -g3")
 set(CMAKE_C_FLAGS_RELEASE "-O2 -s")
 
 find_package(PNG REQUIRED)
